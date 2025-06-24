@@ -1,0 +1,9 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+    printf("Dong dau tien");
+    printf("\nDong thu 2");
+    printf("\nXin chao");
+    return 0;
+}
