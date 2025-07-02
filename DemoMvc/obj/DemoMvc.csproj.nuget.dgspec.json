@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj": {}
+    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj": {}
   },
   "projects": {
-    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj": {
+    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj",
+        "projectUniqueName": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj",
         "projectName": "DemoMvc",
-        "projectPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj",
+        "projectPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\obj\\",
+        "outputPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"

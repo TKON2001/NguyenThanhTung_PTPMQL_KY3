@@ -1,0 +1,11 @@
+@{
+    Layout = "_Layout";
+}
+
+<h2>Nhập dữ liệu: @ViewBag.Message</h2>
+
+<form asp-action="SendData" method="post">
+    <input type="text" name="hoten" placeholder="Nhập họ và tên" required/>
+    <input type="text" name="diachi" placeholder="sinh vien"/>
+    <input type="submit" value="Gửi dữ liệu" />
+</form>

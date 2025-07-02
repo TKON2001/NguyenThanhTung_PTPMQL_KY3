@@ -17,12 +17,19 @@ public class HomeController : Controller
     {
         return View();
     }
-
     public IActionResult Privacy()
     {
         return View();
     }
 
+    [HttpPost]
+    public IActionResult Index(string FullName, string Address)
+    {
+        string strOutput = "Hello " + FullName + ", your address is " + Address;
+        ViewBag.Message = strOutput;
+        return View();
+    }
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

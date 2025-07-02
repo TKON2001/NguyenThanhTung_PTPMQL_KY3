@@ -1,0 +1,11 @@
+@model DemoMvc.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Lỗi hệ thống";
+}
+
+<h1>Lỗi hệ thống</h1>
+<p>RequestId: @Model.RequestId</p>
+@if (!string.IsNullOrEmpty(Model.RequestId))
+{
+    <p>Mã lỗi: @Model.RequestId</p>
+}
