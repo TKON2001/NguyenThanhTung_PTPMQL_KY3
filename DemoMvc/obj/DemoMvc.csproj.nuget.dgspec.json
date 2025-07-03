@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj": {}
+    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj": {}
   },
   "projects": {
-    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj": {
+    "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj",
+        "projectUniqueName": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj",
         "projectName": "DemoMvc",
-        "projectPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\DemoMvc.csproj",
+        "projectPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMVC\\obj\\",
+        "outputPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,32 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SQLite": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

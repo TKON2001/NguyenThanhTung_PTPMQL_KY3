@@ -1,0 +1,37 @@
+@model IEnumerable<DemoMvc.Models.Employee>
+@{
+    ViewData["Title"] = "Danh sách Nhân viên";
+}
+
+<h1>Danh sách Nhân viên</h1>
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().EmployeeId)</th>
+            <th>@Html.DisplayNameFor(model => model.First().FullName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Address)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Email)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Age)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@item.EmployeeId</td>
+            <td>@item.FullName</td>
+            <td>@item.Address</td>
+            <td>@item.Email</td>
+            <td>@item.Age</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-primary">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
