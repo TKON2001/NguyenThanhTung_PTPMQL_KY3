@@ -8012,11 +8012,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj",
+      "projectUniqueName": "F:\\Desktop\\NguyenThanhTung_PTPMQL_KY3\\DemoMvc\\DemoMvc.csproj",
       "projectName": "DemoMvc",
-      "projectPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\DemoMvc.csproj",
+      "projectPath": "F:\\Desktop\\NguyenThanhTung_PTPMQL_KY3\\DemoMvc\\DemoMvc.csproj",
       "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-      "outputPath": "F:\\Desktop\\NguyenThanhTung_Ky3\\DemoMvc\\obj\\",
+      "outputPath": "F:\\Desktop\\NguyenThanhTung_PTPMQL_KY3\\DemoMvc\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"

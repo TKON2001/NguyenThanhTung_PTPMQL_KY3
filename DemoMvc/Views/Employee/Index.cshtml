@@ -1,35 +1,52 @@
-@model IEnumerable<DemoMvc.Models.Employee>
+@* Vị trí file: Views/Employees/Index.cshtml *@
+@model IEnumerable<DemoMvc.Models.Employee> @* <-- Đã sửa: Sử dụng đúng namespace *@
+
 @{
     ViewData["Title"] = "Danh sách Nhân viên";
 }
 
 <h1>Danh sách Nhân viên</h1>
+
 <p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Thêm mới Nhân viên</a>
 </p>
-<table class="table">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.First().EmployeeId)</th>
-            <th>@Html.DisplayNameFor(model => model.First().FullName)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Address)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Email)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Age)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model)
-{
+@foreach (var item in Model) {
         <tr>
-            <td>@item.EmployeeId</td>
-            <td>@item.FullName</td>
-            <td>@item.Address</td>
-            <td>@item.Email</td>
-            <td>@item.Age</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-primary">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger">Delete</a>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
             </td>
         </tr>
 }
