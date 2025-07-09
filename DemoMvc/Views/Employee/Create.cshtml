@@ -1,5 +1,5 @@
-@* Views/Employees/Create.cshtml *@
-@model DemoMvc.Models.Employee
+@* Vị trí file: Views/Employees/Create.cshtml *@
+@model DemoMvc.Models.Employee  @* <-- Đã sửa: Sử dụng đúng namespace và model *@
 
 @{
     ViewData["Title"] = "Thêm mới Nhân viên";
@@ -12,43 +12,42 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="EmployeeId" class="control-label">Mã Nhân Viên</label>
-                @*
-                    Hiển thị giá trị đã được sinh tự động.
-                    Thuộc tính 'readonly' ngăn người dùng chỉnh sửa giá trị này.
-                    Giá trị này vẫn sẽ được gửi đi khi form được submit.
+                @* 
+                    - asp-for="EmployeeId" sẽ tự động lấy giá trị từ Model.
+                    - "readonly" sẽ ngăn người dùng chỉnh sửa trường này.
                 *@
                 <input asp-for="EmployeeId" class="form-control" readonly />
                 <span asp-validation-for="EmployeeId" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="FullName" class="control-label">Họ và Tên</label>
                 <input asp-for="FullName" class="form-control" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Address" class="control-label">Địa chỉ</label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Age" class="control-label">Tuổi</label>
                 <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group">
                 <input type="submit" value="Tạo mới" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="mt-3">
     <a asp-action="Index">Quay lại danh sách</a>
 </div>
 

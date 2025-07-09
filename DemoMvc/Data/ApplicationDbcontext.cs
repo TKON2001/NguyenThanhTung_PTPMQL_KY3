@@ -1,15 +1,14 @@
+// Data/ApplicationDbContext.cs
 using Microsoft.EntityFrameworkCore;
-using DemoMvc.Models;
+using YourProjectName.Models; // Thay YourProjectName bằng tên dự án của bạn
 
-namespace DemoMvc.Data
+public class ApplicationDbContext : DbContext
 {
-    public class ApplicationDbContext : DbContext
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-        }
-
-        public DbSet<Person> Person { get; set; }
-        public DbSet<Employee> Employee { get; set; }
     }
+
+    public DbSet<Person> Person { get; set; }
+    public DbSet<Employee> Employees { get; set; } // Đổi tên thành Employees (số nhiều) để rõ ràng hơn
 }
