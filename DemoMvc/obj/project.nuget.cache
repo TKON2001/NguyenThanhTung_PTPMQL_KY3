@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HdAHVHu9Nug=",
+  "dgSpecHash": "3f6kwEgzDJw=",
   "success": true,
-  "projectFilePath": "F:\\Desktop\\NguyenThanhTung_PTPMQL_KY3\\DemoMvc\\DemoMvc.csproj",
+  "projectFilePath": "F:\\ước mơ\\NguyenThanhTung_PTPMQL_KY3\\DemoMvc\\DemoMvc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Acer\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

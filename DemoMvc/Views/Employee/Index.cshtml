@@ -1,5 +1,5 @@
 @* Vị trí file: Views/Employees/Index.cshtml *@
-@model IEnumerable<DemoMvc.Models.Employee> @* <-- Đã sửa: Sử dụng đúng namespace *@
+@model IEnumerable<DemoMvc.Models.Employee>
 
 @{
     ViewData["Title"] = "Danh sách Nhân viên";
@@ -44,9 +44,9 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeId">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Xóa</a>
             </td>
         </tr>
 }

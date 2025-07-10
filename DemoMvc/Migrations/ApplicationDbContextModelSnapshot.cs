@@ -16,9 +16,34 @@ namespace DemoMvc.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
 
-            modelBuilder.Entity("DemoMvc.Models.Person", b =>
+            modelBuilder.Entity("DemoMvc.Models.DaiLy", b =>
                 {
-                    b.Property<string>("PersonId")
+                    b.Property<string>("MaDaiLy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DienThoai")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MaHTPP")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NguoiDaiDien")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenDaiLy")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaDaiLy");
+
+                    b.ToTable("DaiLy");
+                });
+
+            modelBuilder.Entity("DemoMvc.Models.Entities.Person", b =>
+                {
+                    b.Property<string>("PersonID")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Address")
@@ -33,9 +58,10 @@ namespace DemoMvc.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PersonId");
+                    b.HasKey("PersonID");
 
                     b.ToTable("Persons");
 
@@ -44,17 +70,45 @@ namespace DemoMvc.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("DemoMvc.Models.Entities.Student", b =>
+                {
+                    b.Property<string>("StudentID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("StudentID");
+
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("DemoMvc.Models.HeThongPhanPhoi", b =>
+                {
+                    b.Property<string>("MaHTPP")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenHTPP")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaHTPP");
+
+                    b.ToTable("HeThongPhanPhoi");
+                });
+
             modelBuilder.Entity("DemoMvc.Models.Employee", b =>
                 {
-                    b.HasBaseType("DemoMvc.Models.Person");
+                    b.HasBaseType("DemoMvc.Models.Entities.Person");
 
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("EmployeeId")
                         .HasColumnType("TEXT");
-
-                    b.ToTable("Persons");
 
                     b.HasDiscriminator().HasValue("Employee");
                 });

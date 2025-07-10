@@ -1,4 +1,4 @@
-@model DemoMvc.Models.Person
+@model DemoMvc.Models.Entities.Person
 @{
     ViewData["Title"] = "Edit Person";
 }
@@ -8,7 +8,7 @@
 <form asp-action="Edit">
     @* Hiển thị tóm tắt lỗi *@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="PersonId" />
+    <input type="hidden" asp-for="PersonID" />
     <div class="form-group">
         <label asp-for="FullName"></label>
         <input asp-for="FullName" class="form-control" />

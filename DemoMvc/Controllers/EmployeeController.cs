@@ -16,7 +16,7 @@ namespace DemoMvc.Controllers
         // GET: /Employee/Index/
         public async Task<IActionResult> Index()
         {
-            var model = await _context.Employee.ToListAsync();
+            var model = await _context.Employees.ToListAsync();
             return View(model);
         }
 
@@ -33,7 +33,7 @@ namespace DemoMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Employee.Add(emp);
+                _context.Employees.Add(emp);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -44,7 +44,7 @@ namespace DemoMvc.Controllers
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null) return NotFound();
-            var emp = await _context.Employee.FindAsync(id);
+            var emp = await _context.Employees.FindAsync(id);
             if (emp == null) return NotFound();
             return View(emp);
         }
@@ -68,7 +68,7 @@ namespace DemoMvc.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null) return NotFound();
-            var emp = await _context.Employee.FindAsync(id);
+            var emp = await _context.Employees.FindAsync(id);
             if (emp == null) return NotFound();
             return View(emp);
         }
@@ -78,10 +78,10 @@ namespace DemoMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var emp = await _context.Employee.FindAsync(id);
+            var emp = await _context.Employees.FindAsync(id);
             if (emp != null)
             {
-                _context.Employee.Remove(emp);
+                _context.Employees.Remove(emp);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
