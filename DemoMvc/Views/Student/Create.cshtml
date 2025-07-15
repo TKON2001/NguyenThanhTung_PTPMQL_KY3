@@ -8,6 +8,16 @@
 
 <h4>Student</h4>
 <hr />
+<!-- Form upload file -->
+<form asp-action="Upload" enctype="multipart/form-data">
+    <div class="row form-control">
+        <label class="col-md-2">Upload File</label>
+        <input type="file" name="file" class="col-sm-4">
+        <input type="submit" value="Upload" class="btn btn-primary col-sm-1">
+    </div>
+</form>
+
+<!-- Form tạo student -->
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">

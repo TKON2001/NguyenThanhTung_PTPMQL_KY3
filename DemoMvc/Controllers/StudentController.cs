@@ -9,6 +9,10 @@ using DemoMvc.Data;
 using DemoMvc.Models;
 using StudentEntity = DemoMvc.Models.Entities.Student;
 using DemoMvc.Models.Process;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+
 
 namespace DemoMvc.Controllers
 {
@@ -16,9 +20,15 @@ namespace DemoMvc.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentController(ApplicationDbContext context)
+        private ExcelProcess _excelProcess = new ExcelProcess();
+        // Bạn cần inject IWebHostEnvironment vào Controller của mình
+        // để lấy đường dẫn tới thư mục wwwroot một cách đáng tin cậy.
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public StudentController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Student
@@ -160,6 +170,67 @@ namespace DemoMvc.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // Action GET để hiển thị form upload
+        public IActionResult Upload()
+        {
+            return View("TestView");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                ModelState.AddModelError("file", "Please select a file to upload.");
+                return View();
+            }
+
+            string fileExtension = Path.GetExtension(file.FileName);
+            var allowedExtensions = new[] { ".xls", ".xlsx" };
+            if (!allowedExtensions.Contains(fileExtension.ToLower()))
+            {
+                ModelState.AddModelError("file", "Invalid file type. Please upload an Excel file (.xls, .xlsx).");
+                return View();
+            }
+
+            try
+            {
+                string uploadFolderPath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "excels");
+                if (!Directory.Exists(uploadFolderPath))
+                {
+                    Directory.CreateDirectory(uploadFolderPath);
+                }
+                string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+                string filePath = Path.Combine(uploadFolderPath, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                // Đọc dữ liệu từ file Excel vào DataTable
+                var dt = _excelProcess.ExcelToDataTable(filePath);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    var student = new StudentEntity
+                    {
+                        StudentID = dt.Rows[i][0]?.ToString() ?? "",
+                        FullName = dt.Rows[i][1]?.ToString() ?? "",
+                        Address = dt.Rows[i][2]?.ToString() ?? ""
+                    };
+                    _context.Students.Add(student);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+            }
+            return View();
         }
 
         private bool StudentExists(string id)
