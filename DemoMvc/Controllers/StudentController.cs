@@ -12,7 +12,7 @@ using DemoMvc.Models.Process;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-
+using X.PagedList;
 
 namespace DemoMvc.Controllers
 {
@@ -32,9 +32,22 @@ namespace DemoMvc.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? page, int? PageSize)
         {
-            return View(await _context.Students.ToListAsync());
+             ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="3", Text= "3" },
+                new SelectListItem() { Value="5", Text= "5" },
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="15", Text= "15" },
+                new SelectListItem() { Value="25", Text= "25" },
+                new SelectListItem() { Value="50", Text= "50" },
+            };
+            int pagesize = (PageSize ?? 3);
+            ViewBag.psize = pagesize;
+            var students = _context.Students.OrderBy(s => s.StudentID);
+            var model = students.ToList().ToPagedList(page ?? 1, pagesize);
+            return View(model);
         }
 
         // GET: Student/Details/5
@@ -231,6 +244,37 @@ namespace DemoMvc.Controllers
                 ModelState.AddModelError("", $"An error occurred: {ex.Message}");
             }
             return View();
+        }
+
+        // Action Download để xuất danh sách Student ra file Excel
+        public IActionResult Download()
+        {
+            // Đặt tên file khi tải về
+            var fileName = "Students.xlsx";
+            using (var excelPackage = new OfficeOpenXml.ExcelPackage())
+            {
+                var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet 1");
+                // Thêm tiêu đề cột
+                worksheet.Cells["A1"].Value = "StudentID";
+                worksheet.Cells["B1"].Value = "FullName";
+                worksheet.Cells["C1"].Value = "Address";
+
+                // Lấy danh sách sinh viên
+                var studentList = _context.Students.ToList();
+                int row = 2;
+                foreach (var student in studentList)
+                {
+                    worksheet.Cells[$"A{row}"].Value = student.StudentID;
+                    worksheet.Cells[$"B{row}"].Value = student.FullName;
+                    worksheet.Cells[$"C{row}"].Value = student.Address;
+                    row++;
+                }
+
+                // Tạo stream để trả về file
+                var stream = new MemoryStream(excelPackage.GetAsByteArray());
+                stream.Position = 0;
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
         }
 
         private bool StudentExists(string id)

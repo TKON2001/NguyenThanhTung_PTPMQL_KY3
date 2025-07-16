@@ -1,4 +1,6 @@
-@model IEnumerable<DemoMvc.Models.Entities.Student>
+@model IPagedList<DemoMvc.Models.Entities.Student>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 
 @{
     ViewData["Title"] = "Index";
@@ -8,41 +10,66 @@
 
 <p>
     <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Download">Download</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
-                </td>
+                <th>StudentID</th>
+                <th>FullName</th>
+                <th>Address</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No students found.</p>
+}
+
+
+@using (Html.BeginForm("Index", "Student", FormMethod.Get, new { id = "form1" }))
+{
+    <div class="row">
+        <div class="col-md-10">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, pageSize = ViewBag.psize }))
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownList("PageSize", (List<SelectListItem>)ViewBag.PageSize, new { @class = "form-select" })
+        </div>
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#PageSize").change(function () {
+            $("#form1").submit();
+        });
+    });
+</script>
